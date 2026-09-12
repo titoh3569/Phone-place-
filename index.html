@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kenya's online phone and electronics marketplace">
+  <title>JumiaKenya - Phones & Electronics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container top-content">
+      <span>🇰🇪 Welcome to Kenya's Online Marketplace</span>
+      <div>
+        <a href="#">Help Center</a>
+        <a href="#">Track Order</a>
+        <a href="#">Sell on JumiaKenya</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-content">
+
+      <div class="logo">
+        <span>Jumia</span><small>Kenya</small>
+      </div>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search for phones, electronics and more..."
+        >
+        <button onclick="searchProducts()">🔎 Search</button>
+      </div>
+
+      <button class="account-btn" onclick="openAccount()">
+        👤 Account
+      </button>
+
+      <button class="cart-btn" onclick="openCart()">
+        🛒 Cart
+        <span id="cartCount">0</span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- CATEGORY NAVIGATION -->
+  <nav class="categories">
+    <div class="container category-list">
+      <button onclick="filterCategory('all')">🏠 All</button>
+      <button onclick="filterCategory('phones')">📱 Phones</button>
+      <button onclick="filterCategory('samsung')">Samsung</button>
+      <button onclick="filterCategory('iphone')">iPhone</button>
+      <button onclick="filterCategory('xiaomi')">Xiaomi</button>
+      <button onclick="filterCategory('tecno')">Tecno</button>
+      <button onclick="filterCategory('infinix')">Infinix</button>
+      <button onclick="filterCategory('electronics')">💻 Electronics</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="hero-text">
+        <p class="hero-small">🇰🇪 SHOP IN KENYA</p>
+        <h1>Big Deals on<br><span>Phones & Electronics</span></h1>
+        <p>Affordable prices • Fast delivery • Secure payments</p>
+        <button onclick="scrollToProducts()">SHOP NOW →</button>
+      </div>
+
+      <div class="hero-phone">
+        📱
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="container service-grid">
+
+      <div class="service">
+        <span>🚚</span>
+        <div>
+          <strong>Fast Delivery</strong>
+          <small>Across Kenya</small>
+        </div>
+      </div>
+
+      <div class="service">
+        <span>💳</span>
+        <div>
+          <strong>Secure Payment</strong>
+          <small>M-Pesa & Cards</small>
+        </div>
+      </div>
+
+      <div class="service">
+        <span>🔄</span>
+        <div>
+          <strong>Easy Returns</strong>
+          <small>Shop with confidence</small>
+        </div>
+      </div>
+
+      <div class="service">
+        <span>🛡️</span>
+        <div>
+          <strong>Buyer Protection</strong>
+          <small>100% secure shopping</small>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FLASH SALE -->
+  <section class="flash-section">
+    <div class="container">
+
+      <div class="section-heading flash-heading">
+        <h2>⚡ Flash Sale</h2>
+
+        <div class="countdown">
+          <span>Ends in</span>
+          <b id="hours">00</b> :
+          <b id="minutes">00</b> :
+          <b id="seconds">00</b>
+        </div>
+
+        <button onclick="filterSale()">See All →</button>
+      </div>
+
+      <div class="products-grid" id="flashProducts"></div>
+
+    </div>
+  </section>
+
+  <!-- PROMOTIONAL BANNER -->
+  <section class="promo">
+    <div class="container promo-content">
+      <div>
+        <span>MEGA PHONE SALE</span>
+        <h2>Save up to 30% on selected smartphones</h2>
+        <p>Limited-time offers while stocks last.</p>
+      </div>
+
+      <button onclick="filterSale()">SHOP DEALS →</button>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <main class="container products-section" id="products">
+
+    <div class="section-heading">
+      <h2>📱 Phones & Electronics</h2>
+
+      <select id="sortProducts" onchange="sortProducts()">
+        <option value="default">Sort By</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="discount">Biggest Discount</option>
+      </select>
+    </div>
+
+    <div class="products-grid" id="productGrid"></div>
+
+  </main>
+
+  <!-- CART MODAL -->
+  <div class="modal-overlay" id="cartModal">
+
+    <div class="modal cart-modal">
+
+      <button class="close" onclick="closeCart()">×</button>
+
+      <h2>🛒 Your Shopping Cart</h2>
+
+      <div id="cartItems"></div>
+
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cartTotal">KSh 0</strong>
+      </div>
+
+      <button class="checkout-btn" onclick="checkout()">
+        Proceed to Checkout
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ACCOUNT MODAL -->
+  <div class="modal-overlay" id="accountModal">
+
+    <div class="modal account-modal">
+
+      <button class="close" onclick="closeAccount()">×</button>
+
+      <h2>👤 Welcome Back</h2>
+      <p>Sign in to manage your account and orders.</p>
+
+      <input type="text" placeholder="Phone number or email">
+      <input type="password" placeholder="Password">
+
+      <button class="login-btn" onclick="login()">
+        Sign In
+      </button>
+
+      <p class="register">
+        New customer?
+        <a href="#">Create an account</a>
+      </p>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container footer-grid">
+
+      <div>
+        <h3>JumiaKenya</h3>
+        <p>Your trusted Kenyan marketplace for phones and electronics.</p>
+      </div>
+
+      <div>
+        <h3>Customer Service</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Returns</a>
+      </div>
+
+      <div>
+        <h3>Payment</h3>
+        <p>💚 M-Pesa</p>
+        <p>💳 Visa / Mastercard</p>
+      </div>
+
+      <div>
+        <h3>Follow Us</h3>
+        <p>Facebook</p>
+        <p>Instagram</p>
+        <p>TikTok</p>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 JumiaKenya Marketplace
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
